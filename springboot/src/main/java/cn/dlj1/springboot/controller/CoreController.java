@@ -22,9 +22,7 @@ public class CoreController {
 	private Executor executor;
 	@Autowired
 	private RedisTemplate<String, String> template;
-	@Autowired
-	private UserRepository userRepository;
-	
+
 	@RequestMapping("/page")
 	public String page() {
 		return "index";
@@ -39,7 +37,6 @@ public class CoreController {
 	@RequestMapping("/list")
 	@ResponseBody
 	public List<Map<String, Object>> attr() {
-
 		List<Map<String, Object>> list = service.get();
 		return list;
 	}
@@ -57,8 +54,8 @@ public class CoreController {
 
 	@RequestMapping("")
 	@ResponseBody
-	public List index(){
-		return userRepository.findAll();
+	public String index() {
+		return "666";
 	}
 
 }
