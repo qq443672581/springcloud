@@ -22,12 +22,11 @@ public class CoreController {
     @Autowired
     private DiscoveryClient client;
 
-    @RequestMapping(value = "/add" ,method = RequestMethod.GET)
-    public Integer add(@RequestParam Integer a, @RequestParam Integer b) {
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String test() {
         ServiceInstance instance = client.getLocalServiceInstance();
-        Integer r = a + b;
-        System.out.println("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId() + ", result:" + r);
-        return r;
+        System.out.println("/add, host:" + instance.getHost() + ", service_id:" + instance.getServiceId());
+        return "666";
     }
 
 }
