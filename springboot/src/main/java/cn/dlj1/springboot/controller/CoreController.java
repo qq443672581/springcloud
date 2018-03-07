@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.dlj1.springboot.service.CoreService;
 
+import javax.transaction.Transactional;
+
 @RequestMapping("/")
 @org.springframework.stereotype.Controller
+@Transactional
 public class CoreController {
 	
 	@Autowired
@@ -37,8 +40,7 @@ public class CoreController {
 	@RequestMapping("/list")
 	@ResponseBody
 	public List<Map<String, Object>> attr() {
-		List<Map<String, Object>> list = service.get();
-		return list;
+		return service.get();
 	}
 	
 	@RequestMapping("/one")
@@ -55,7 +57,7 @@ public class CoreController {
 	@RequestMapping("")
 	@ResponseBody
 	public String index() {
-		return "666";
+        return "6";
 	}
 
 }

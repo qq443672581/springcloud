@@ -17,12 +17,12 @@ import com.alibaba.druid.pool.DruidDataSource;
 @EnableTransactionManagement
 public class TransactionConfig {
 	
-	@Bean
 	@Primary
+    @Bean(name = "transactionManagerPrimary")
     public PlatformTransactionManager transactionManagerPrimary(DataSource ds) {
         return new DataSourceTransactionManager(ds);
     }
-	
+
 	@Bean
     public PlatformTransactionManager transactionManagerSecond(@Qualifier("dataSourceSecond") DruidDataSource ds) {
         return new DataSourceTransactionManager(ds);

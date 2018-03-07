@@ -1,11 +1,7 @@
 package cn.dlj1.springboot.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -15,12 +11,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(unique = true)
     private String name;
     @Column
     private Integer age;
     @Column
     private Integer sex;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Book> books;
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
 
     public long getId() {
         return id;
