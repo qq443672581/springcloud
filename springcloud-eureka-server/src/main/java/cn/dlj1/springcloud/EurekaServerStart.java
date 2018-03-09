@@ -1,4 +1,4 @@
-package cn.dlj1.boot;
+package cn.dlj1.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

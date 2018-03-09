@@ -8,17 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CoreController {
 
+    @Value("${message}")
+    public String message;
+
     @RequestMapping("")
     public String index() {
-        return "this is index!";
-    }
-
-    @Value("${foo}")
-    public String foo;
-
-    @RequestMapping(value = "/hello")
-    public String hi(){
-        return foo;
+        return String.format("This Is Message From Github: %s",message);
     }
 
 }
