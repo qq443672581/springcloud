@@ -1,17 +1,26 @@
 package cn.dlj1.springcloud.controller;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/")
-@Controller
+@RestController
 public class CoreController {
 
     @RequestMapping("")
-    @ResponseBody
     public String index() {
         return "this is index!";
+    }
+
+    @RequestMapping("/order/{id}")
+    public String order(@PathVariable String id) {
+        return "this is " + id;
+
+    }
+
+    @RequestMapping("/product/{id}")
+    public String product(@PathVariable String id) {
+        return "this is " + id;
     }
 
 

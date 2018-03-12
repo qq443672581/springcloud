@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 
 @SpringBootApplication
-@EnableAuthorizationServer
-@EnableOAuth2Sso
+//@EnableAuthorizationServer
+//@EnableOAuth2Sso
 public class SecurityStart {
 
 	public static void main(String[] args){
