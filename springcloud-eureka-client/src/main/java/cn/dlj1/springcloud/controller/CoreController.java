@@ -18,11 +18,11 @@ public class CoreController {
     @Autowired
     private DiscoveryClient client;
 
-    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    @RequestMapping(value = "/infos", method = RequestMethod.GET)
     public String test() {
         ServiceInstance instance = client.getLocalServiceInstance();
         System.out.println("/info, host:" + instance.getHost() + ", service_id:" + instance.getServiceId());
-        return "666";
+        return "/info, host:" + instance.getHost() + ", service_id:" + instance.getServiceId();
     }
 
 }

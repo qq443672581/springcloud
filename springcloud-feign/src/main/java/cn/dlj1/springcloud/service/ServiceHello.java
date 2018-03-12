@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "EUREKA-CLIENT",fallback = ServiceHelloHystric.class)
 public interface ServiceHello {
 
-    @RequestMapping(value = "/info",method = RequestMethod.GET)
+    @RequestMapping(value = "/infos",method = RequestMethod.GET)
     String hello(@RequestParam(value = "name") String name);
 
 }
