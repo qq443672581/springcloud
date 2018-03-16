@@ -7,6 +7,6 @@ public class ServiceHelloHystric implements ServiceHello {
 
     @Override
     public String hello(String name) {
-        return "sorry service fail";
+        return "sorry service fail!";
     }
 }
