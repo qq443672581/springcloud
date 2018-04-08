@@ -1,7 +1,7 @@
 package cn.dlj1.ec.annotation.db.utils;
 
 import cn.dlj1.ec.annotation.db.More;
-import cn.dlj1.ec.pojo.entity.SuperEntity;
+import cn.dlj1.ec.pojo.entity.Entity;
 
 import java.lang.reflect.Field;
 
@@ -19,7 +19,7 @@ public class MoreUtils {
         return get(field).more();
     }
 
-    public static Class<? extends SuperEntity> getClazz(Field field) {
+    public static Class<? extends Entity> getClazz(Field field) {
         return get(field).clazz();
     }
 

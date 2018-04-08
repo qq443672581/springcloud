@@ -1,6 +1,6 @@
 package cn.dlj1.ec.annotation.db;
 
-import cn.dlj1.ec.pojo.entity.SuperEntity;
+import cn.dlj1.ec.pojo.entity.Entity;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface Relation {
 
-    Class<? extends SuperEntity> Class();
+    Class<? extends Entity> Class();
 
     String field() default "id";
 

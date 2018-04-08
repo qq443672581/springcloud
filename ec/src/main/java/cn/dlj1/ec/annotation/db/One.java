@@ -1,6 +1,6 @@
 package cn.dlj1.ec.annotation.db;
 
-import cn.dlj1.ec.pojo.entity.SuperEntity;
+import cn.dlj1.ec.pojo.entity.Entity;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -29,7 +29,7 @@ public @interface One {
      *
      * @return
      */
-    Class<? extends SuperEntity> clazz();
+    Class<? extends Entity> clazz();
 
     /**
      * 对应方关联字段

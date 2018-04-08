@@ -1,6 +1,6 @@
 package cn.dlj1.ec.controller;
 
-import cn.dlj1.ec.pojo.entity.SuperEntity;
+import cn.dlj1.ec.pojo.entity.Entity;
 import cn.dlj1.ec.service.SuperService;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author: fivewords(443672581 @ qq.com)
  * @dateTime: 2018/4/7
  */
-public interface CommonSuperController<T extends SuperEntity> extends SuperController<T> {
+public interface CommonSuperController<T extends Entity> extends SuperController<T> {
 
     // 默认入口页面
     String DEFAULT_PAGE = "page";

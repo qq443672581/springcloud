@@ -8,7 +8,7 @@ package cn.dlj1.ec.eql;
  */
 public class EQL {
 
-    public String getSql() {
-        return "";
-    }
+    //分页默认每页数量
+    static final int EVERY_PAGE_SIZE = 20;
+
 }

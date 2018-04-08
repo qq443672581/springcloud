@@ -2,7 +2,7 @@ package cn.dlj1.ec.dao;
 
 import cn.dlj1.ec.db.Jdbc;
 import cn.dlj1.ec.db.condition.Cnd;
-import cn.dlj1.ec.pojo.entity.SuperEntity;
+import cn.dlj1.ec.pojo.entity.Entity;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Map;
  * @author: fivewords(443672581 @ qq.com)
  * @dateTime: 2018/4/7
  */
-public interface SuperDao<T extends SuperEntity> {
+public interface SuperDao<T extends Entity> {
 
     /**
      * 获取jdbc模版<br>
@@ -142,20 +142,20 @@ public interface SuperDao<T extends SuperEntity> {
     );
 
     /**
+     *
+     *
      * @param clazz
      * @param sql
-     * @param returns
-     * @param groups
      * @param cnds
      * @return
      */
-    long queryCount(Class<T> clazz, String sql, String[] returns, String[] groups, Cnd... cnds);
+    long queryVOCount(Class<T> clazz, String sql, Cnd... cnds);
 
     /**
+     *
+     *
      * @param clazz
      * @param sql
-     * @param returns
-     * @param groups
      * @param sortField
      * @param sortType
      * @param nowPage
@@ -163,11 +163,9 @@ public interface SuperDao<T extends SuperEntity> {
      * @param cnds
      * @return
      */
-    List<Map<String, Object>> queryTableData(
+    List<Map<String, Object>> queryVOTableData(
             Class<T> clazz,
             String sql,
-            String[] returns,
-            String[] groups,
             String sortField,
             String sortType,
             int nowPage,
@@ -175,73 +173,136 @@ public interface SuperDao<T extends SuperEntity> {
             Cnd... cnds
     );
 
-
-    /*
-     * 用于表格的方法End
-     */
-
     /*
      * ============下边都是定义的普通查询Dao接口===================
      */
 
     /**
      * 通过Cnd查询实体
+     *
+     * @param clazz
+     * @param cnds
+     * @return
      */
-    T queryEntity(Class<T> type, Cnd... cnds);
+    T queryEntity(Class<T> clazz, Cnd... cnds);
 
     /**
      * 通过ID查询实体
+     *
+     * @param clazz
+     * @param id
+     * @return
      */
-    T queryEntity(Class<T> type, int id);
+    T queryEntity(Class<T> clazz, int id);
 
     /**
-     * 查询实体list
+     * 查询实体集合通过cnd
+     *
+     * @param clazz
+     * @param cnds
+     * @return
      */
-    List<T> queryEntityList(Class<T> type, Cnd... cnds);
+    List<T> queryEntitys(Class<T> clazz, Cnd... cnds);
 
     /**
-     * 查询一个实体的某个字段list
+     * 查询一个实体的某个字段集合
+     * 通过cnd
+     *
+     * @param clazz
+     * @param fieldType
+     * @param field
+     * @param cnds
+     * @param <X>
+     * @return
      */
-    <X> List<X> queryEntityFieldList(Class<T> type, String field, Class<X> fieldType, Cnd... cnds);
+    <X> List<X> queryEntityFields(Class<T> clazz, Class<X> fieldType, String field, Cnd... cnds);
 
     /**
-     * 查询一个实体的一个字段通过Cnd
+     * 查询一个实体的某个字段
+     * 通过cnd
+     *
+     * @param clazz
+     * @param fieldType
+     * @param field
+     * @param cnds
+     * @param <X>
+     * @return
      */
-    <X> X queryEntityField(Class<T> type, String returnField, Class<X> fieldType, Cnd... cnds);
+    <X> X queryEntityField(Class<T> clazz, Class<X> fieldType, String field, Cnd... cnds);
 
     /**
-     * 查询一个实体的一个字段通过ID
+     * 查询一个实体的某个字段
+     * 通过ID
+     *
+     * @param clazz
+     * @param fieldType
+     * @param field
+     * @param id
+     * @param <X>
+     * @return
      */
-    <X> X queryEntityField(Class<T> type, String returnField, Class<X> fieldType, int id);
+    <X> X queryEntityField(Class<T> clazz, Class<X> fieldType, String field, int id);
 
     /**
-     * 通过Cnd 判断次条件下的数据是否存在<br>
-     * 只要 查询结果条数 > 0,那么返回true
+     * 判断数据是否存在
+     * 通过cnd
+     * 查询结果条数 > 0,那么返回true
+     *
+     * @param clazz
+     * @param cnds
+     * @return
      */
-    boolean isExist(Class<T> type, Cnd... cnds);
+    boolean isExist(Class<T> clazz, Cnd... cnds);
 
     /**
-     * 通过sql语句返回一个实体的键值对
+     * 查询实体数据
+     * 通过sql
+     * 返回键值对形式
+     *
+     * @param sql
+     * @param params
+     * @return
      */
     Map<String, Object> queryMap(String sql, Object... params);
 
     /**
-     * 通过sql语句返回一个实体的 KV List
+     * 查询实体数据
+     * 通过sql
+     * 返回键值对集合形式
+     *
+     * @param sql
+     * @param params
+     * @return
      */
-    List<Map<String, Object>> queryMapList(String sql, Object... params);
+    List<Map<String, Object>> queryMaps(String sql, Object... params);
 
     /**
-     * 查询实体中一个字段的list
+     * 查询实体中一个字段集合
+     * 通过sql
+     *
+     * @param clazz
+     * @param sql
+     * @param params
+     * @param <X>
+     * @return
      */
-    <X> List<X> queryList(String sql, Class<X> type, Object... params);
+    <X> List<X> queryList(Class<X> clazz, String sql, Object... params);
 
     /**
-     * 用于统计返回字段
+     * 查询一个数据字段
+     * 通过sql
+     *
+     * @param clazz
+     * @param sql
+     * @param params
+     * @param <X>
+     * @return
      */
-    <X> X queryObject(String sql, Class<X> type, Object... params);
+    <X> X queryObject(Class<X> clazz, String sql, Object... params);
 
     /**
-     * update
+     * 数据新增修改
+     * 返回影响条数
      *
      * @param sql
      * @param params
@@ -250,7 +311,8 @@ public interface SuperDao<T extends SuperEntity> {
     int update(String sql, Object... params);
 
     /**
-     * 多条修改
+     * 多条数据新增修改
+     * 返回影响条数
      *
      * @param sql
      * @param params

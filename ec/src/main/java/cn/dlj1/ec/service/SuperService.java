@@ -1,6 +1,6 @@
 package cn.dlj1.ec.service;
 
-import cn.dlj1.ec.pojo.entity.SuperEntity;
+import cn.dlj1.ec.pojo.entity.Entity;
 
 /**
  * 服务接口
@@ -8,5 +8,5 @@ import cn.dlj1.ec.pojo.entity.SuperEntity;
  * @author: fivewords(443672581 @ qq.com)
  * @dateTime: 2018/4/7
  */
-public interface SuperService<T extends SuperEntity> {
+public interface SuperService<T extends Entity> {
 }
