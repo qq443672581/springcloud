@@ -1,8 +1,10 @@
 package cn.dlj1.ec.eql;
 
+import cn.dlj1.ec.pojo.entity.Entity;
+
 /**
  * EQL 对象级 sql生成工具类
- *
+ * 这里会包括 新增 修改 删除 查询
  *
  * @author: fivewords(443672581 @ qq.com)
  * @dateTime: 2018/4/7
@@ -11,5 +13,11 @@ public class EQL {
 
     //分页默认每页数量
     static final int EVERY_PAGE_SIZE = 20;
+
+    public static EqlResult insert(Entity entity) {
+
+
+        return null;
+    }
 
 }

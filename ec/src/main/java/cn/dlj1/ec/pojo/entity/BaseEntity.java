@@ -8,18 +8,9 @@ package cn.dlj1.ec.pojo.entity;
  */
 public class BaseEntity implements Entity {
 
-    public static final String TO_NULL_FIELD = "systemToEmptyFields";
-
-    // 要制空的字段
-    private String[] systemToEmptyFields;
-
-    public String[] getSystemToEmptyFields() {
-        return systemToEmptyFields;
+    @Override
+    public String getName() {
+        return null;
     }
-
-    public void setSystemToEmptyFields(String[] systemToEmptyFields) {
-        this.systemToEmptyFields = systemToEmptyFields;
-    }
-
 
 }
