@@ -1,4 +1,4 @@
-package cn.dlj1.ec.eql;
+package cn.dlj1.ec.db.eql;
 
 import cn.dlj1.ec.pojo.entity.Entity;
 
@@ -15,8 +15,6 @@ public class EQL {
     static final int EVERY_PAGE_SIZE = 20;
 
     public static EqlResult insert(Entity entity) {
-
-
         return null;
     }
 

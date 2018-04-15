@@ -1,4 +1,4 @@
-package cn.dlj1.ec.eql;
+package cn.dlj1.ec.db.eql;
 
 /**
  * @author: fivewords(443672581 @ qq.com)
