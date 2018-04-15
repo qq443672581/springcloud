@@ -13,6 +13,7 @@ import java.util.Map;
  */
 public class ClassUtils {
 
+    private static final Object lock = new Object();
     private static final Map<Class<?>, Field[]> classFields = new HashMap<Class<?>, Field[]>();
 
     /**
@@ -27,22 +28,29 @@ public class ClassUtils {
             return fields;
         }
 
-        Class<?> clazz_ = clazz;
-        fields = new Field[0];
-        while (clazz_ != Object.class) {
-            Field[] fields_ = clazz_.getDeclaredFields();
-            if (fields_.length != 0) {
-                int length = fields.length;
-                fields = Arrays.copyOf(fields, fields_.length + length);
-                for (int i = 0; i < fields_.length; i++) {
-                    fields[length + i] = fields_[i];
-                }
+        synchronized (lock){
+            fields = classFields.get(clazz);
+            if (null != fields) {
+                return fields;
             }
-            clazz_ = clazz_.getSuperclass();
-        }
 
-        classFields.put(clazz, fields);
-        return fields;
+            Class<?> clazz_ = clazz;
+            fields = new Field[0];
+            while (clazz_ != Object.class) {
+                Field[] fields_ = clazz_.getDeclaredFields();
+                if (fields_.length != 0) {
+                    int length = fields.length;
+                    fields = Arrays.copyOf(fields, fields_.length + length);
+                    for (int i = 0; i < fields_.length; i++) {
+                        fields[length + i] = fields_[i];
+                    }
+                }
+                clazz_ = clazz_.getSuperclass();
+            }
+
+            classFields.put(clazz, fields);
+            return fields;
+        }
     }
 
 }
