@@ -13,8 +13,7 @@ import java.util.Map;
  */
 public class ClassUtils {
 
-    private static final Object lock = new Object();
-    private static final Map<Class<?>, Field[]> classFields = new HashMap<Class<?>, Field[]>();
+    private static final Impl impl = new Impl();
 
     /**
      * 获取一个类的全部字段
@@ -23,6 +22,36 @@ public class ClassUtils {
      * @return
      */
     public static Field[] getFields(Class<?> clazz) {
+        return impl.getFields(clazz);
+    }
+
+    /**
+     * 获取一个类的全部字段
+     *
+     * @param clazz
+     * @return
+     */
+    public static String[] getFieldsString(Class<?> clazz) {
+        return impl.getFieldsString(clazz);
+    }
+
+
+}
+
+class Impl {
+
+    private static final Object lock = new Object();
+    private static final Map<Class<?>, Field[]> classFields = new HashMap<Class<?>, Field[]>();
+    private static final Map<Class<?>, String[]> classFieldsString = new HashMap<Class<?>, String[]>();
+
+    /**
+     * 获取一个类的全部字段
+     * 返回字段类
+     *
+     * @param clazz
+     * @return
+     */
+    public Field[] getFields(Class<?> clazz) {
         Field[] fields = classFields.get(clazz);
         if (null != fields) {
             return fields;
@@ -47,10 +76,33 @@ public class ClassUtils {
                 }
                 clazz_ = clazz_.getSuperclass();
             }
-
             classFields.put(clazz, fields);
+        }
+
+        return fields;
+    }
+
+    /**
+     * 获取一个类的全部字段
+     * 返回字段字符串
+     *
+     * @param clazz
+     * @return
+     */
+    public String[] getFieldsString(Class<?> clazz) {
+        String[] fields = classFieldsString.get(clazz);
+        if (null != fields) {
             return fields;
         }
+        Field[] fs = getFields(clazz);
+        fields = new String[fs.length];
+        for (int i = 0; i < fs.length; i++) {
+            fields[i] = fs[i].getName();
+        }
+        classFieldsString.put(clazz, fields);
+
+        return fields;
     }
+
 
 }
