@@ -1,5 +1,6 @@
 package cn.dlj1.ec.db.condition;
 
+import cn.dlj1.ec.annotation.db.enums.CndType;
 import cn.dlj1.ec.annotation.db.enums.QueryType;
 
 /**
@@ -10,6 +11,6 @@ import cn.dlj1.ec.annotation.db.enums.QueryType;
  */
 public interface Cnd {
 
-    QueryType getType();
+    CndType getCndType();
 
 }
