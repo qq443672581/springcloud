@@ -8,9 +8,4 @@ package cn.dlj1.ec.pojo.entity;
  */
 public class BaseEntity implements Entity {
 
-    @Override
-    public String getName() {
-        return null;
-    }
-
 }

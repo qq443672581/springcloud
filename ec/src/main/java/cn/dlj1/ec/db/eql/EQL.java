@@ -1,5 +1,6 @@
 package cn.dlj1.ec.db.eql;
 
+import cn.dlj1.ec.db.condition.Cnd;
 import cn.dlj1.ec.pojo.entity.Entity;
 
 /**
@@ -17,5 +18,19 @@ public class EQL {
     public static EqlResult insert(Entity entity) {
         return null;
     }
+
+    public static EqlResult delete(Class<Entity> clazz, Object ids) {
+        return null;
+    }
+
+    public static EqlResult update(Entity entity, Object id) {
+        return null;
+    }
+
+    public static EqlResult query(Class<Entity> clazz, Cnd cnd) {
+        return null;
+    }
+
+
 
 }

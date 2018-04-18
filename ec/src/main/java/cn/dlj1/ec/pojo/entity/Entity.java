@@ -10,6 +10,4 @@ package cn.dlj1.ec.pojo.entity;
  */
 public interface Entity {
 
-    String getName();
-
 }
