@@ -11,6 +11,9 @@ import cn.dlj1.ec.annotation.db.enums.QueryType;
  */
 public interface Cnd {
 
+    /**
+     * 获取条件类型
+     */
     CndType getCndType();
 
 }

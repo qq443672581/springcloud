@@ -1,11 +1,15 @@
-package cn.dlj1.ec.db.condition.impl;
+package cn.dlj1.ec.db.condition.query;
 
 import cn.dlj1.ec.annotation.db.enums.QueryType;
 import cn.dlj1.ec.db.condition.Query;
 
+/**
+ * 两者间
+ *
+ * @author: fivewords(443672581 @ qq.com)
+ * @dateTime: 2018/4/19 22:23
+ */
 public class Between extends Query {
-
-
 
     private String field;
 
@@ -19,11 +23,6 @@ public class Between extends Query {
 
     public void setField(String field) {
         this.field = field;
-    }
-
-    @Override
-    public QueryType getQueryType() {
-        return super.getQueryType();
     }
 
     public Object getLeft() {
@@ -42,15 +41,10 @@ public class Between extends Query {
         this.right = right;
     }
 
-    public Between() {
-    }
-
     public Between(String field, Object left, Object right) {
-        super();
+        super(QueryType.BETWEEN);
         this.field = field;
         this.left = left;
         this.right = right;
     }
-
-
 }

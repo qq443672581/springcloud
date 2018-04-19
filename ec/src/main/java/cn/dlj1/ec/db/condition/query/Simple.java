@@ -1,13 +1,17 @@
-package cn.dlj1.ec.db.condition.impl;
+package cn.dlj1.ec.db.condition.query;
 
 import cn.dlj1.ec.annotation.db.enums.QueryType;
-import cn.dlj1.ec.db.condition.Cnd;
+import cn.dlj1.ec.db.condition.Query;
 
-public class Condition implements Cnd {
+/**
+ * 简单条件查询
+ *
+ * @author: fivewords(443672581 @ qq.com)
+ * @dateTime: 2018/4/19 22:22
+ */
+public class Simple extends Query {
 
     private String field;
-
-    private QueryType type = QueryType.EQUALS;
 
     private Object value;
 
@@ -19,15 +23,6 @@ public class Condition implements Cnd {
         this.field = field;
     }
 
-    @Override
-    public QueryType getType() {
-        return type;
-    }
-
-    public void setType(QueryType type) {
-        this.type = type;
-    }
-
     public Object getValue() {
         return value;
     }
@@ -36,13 +31,9 @@ public class Condition implements Cnd {
         this.value = value;
     }
 
-    public Condition() {
-
-    }
-
-    public Condition(String field, QueryType type, Object value) {
+    public Simple(QueryType queryType, String field, Object value) {
+        super(queryType);
         this.field = field;
-        this.type = type;
         this.value = value;
     }
 

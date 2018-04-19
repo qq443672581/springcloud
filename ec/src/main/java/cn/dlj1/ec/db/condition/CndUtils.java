@@ -1,13 +1,11 @@
 package cn.dlj1.ec.db.condition;
 
 import cn.dlj1.ec.annotation.db.enums.QueryType;
-import cn.dlj1.ec.db.condition.impl.Between;
-import cn.dlj1.ec.db.condition.impl.Condition;
-import cn.dlj1.ec.db.condition.impl.Conditions;
+import cn.dlj1.ec.db.condition.query.Between;
+import cn.dlj1.ec.db.condition.query.Composite;
+import cn.dlj1.ec.db.condition.query.Simple;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Cnd 条件工具类
@@ -36,26 +34,6 @@ public class CndUtils {
         return create(0);
     }
 
-    /**
-     * 转为一个map，会过滤掉符合条件
-     *
-     * @param cnds
-     * @return
-     */
-    public static Map<String, Object> toMap(Cnd[] cnds) {
-        if (null == cnds || cnds.length == 0) {
-            new HashMap<String, Object>(0);
-        }
-        Map<String, Object> map = new HashMap<String, Object>();
-        for (Cnd cnd : cnds) {
-            if (!QueryType.isCompoundCnd(cnd.getType())) {
-                Condition c = (Condition) cnd;
-                map.put(c.getField(), c.getValue());
-            }
-        }
-        return map;
-    }
-
     public static Cnd[] add(Cnd[] cnds, Cnd cnd) {
         if (null == cnds) {
             cnds = new Cnd[0];
@@ -80,7 +58,7 @@ public class CndUtils {
     }
 
     public static Cnd simple(String field, QueryType type, Object value) {
-        return new Condition(field, type, value);
+        return new Simple(type, field, value);
     }
 
     /**
@@ -98,43 +76,33 @@ public class CndUtils {
     /**
      * and 多个条件
      *
-     * @param cnds
+     * @param querys
      * @return
      */
-    public static Cnd and(Cnd... cnds) {
-        return new Conditions(QueryType.AND, cnds);
-    }
-
-    /**
-     * or 多个条件
-     *
-     * @param cnds
-     * @return
-     */
-    public static Cnd or(Cnd... cnds) {
-        return new Conditions(QueryType.OR, cnds);
+    public static Cnd and(Query[] querys) {
+        return new Composite(querys);
     }
 
 
     //////////////////////////////////////////////
     public static Cnd equals(String field, Object value) {
-        return new Condition(field, QueryType.EQUALS, value);
+        return new Simple(QueryType.EQUALS, field, value);
     }
 
     public static Cnd like(String field, Object value) {
-        return new Condition(field, QueryType.LIKE, value);
+        return new Simple(QueryType.LIKE, field, value);
     }
 
     public static Cnd start(String field, Object value) {
-        return new Condition(field, QueryType.START, value);
+        return new Simple(QueryType.START, field, value);
     }
 
     public static Cnd get(String field, Object value) {
-        return new Condition(field, QueryType.GET, value);
+        return new Simple(QueryType.GET, field, value);
     }
 
     public static Cnd in(String field, Object value) {
-        return new Condition(field, QueryType.IN, value);
+        return new Simple(QueryType.IN, field, value);
     }
 
 
