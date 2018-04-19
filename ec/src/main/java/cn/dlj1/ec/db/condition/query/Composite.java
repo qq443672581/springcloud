@@ -1,6 +1,6 @@
 package cn.dlj1.ec.db.condition.query;
 
-import cn.dlj1.ec.annotation.db.enums.QueryType;
+import cn.dlj1.ec.enums.QueryType;
 import cn.dlj1.ec.db.condition.Query;
 
 /**

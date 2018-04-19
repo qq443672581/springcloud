@@ -1,4 +1,4 @@
-package cn.dlj1.ec.annotation.db.enums;
+package cn.dlj1.ec.enums;
 
 /**
  * 条件查询类型
