@@ -1,5 +1,7 @@
 package cn.dlj1.ec.db.returns;
 
+import java.lang.reflect.Field;
+
 /**
 *
 *
@@ -8,6 +10,6 @@ package cn.dlj1.ec.db.returns;
 */
 public class Composite implements Return{
 
-    private Return[] fields;
+    private Field[] fields;
 
 }
