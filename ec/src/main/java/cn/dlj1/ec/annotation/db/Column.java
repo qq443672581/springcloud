@@ -1,6 +1,6 @@
 package cn.dlj1.ec.annotation.db;
 
-import cn.dlj1.ec.enums.DataType;
+import cn.dlj1.ec.db.types.DataType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,6 +1,6 @@
 package cn.dlj1.ec.annotation.db;
 
-import cn.dlj1.ec.enums.QueryType;
+import cn.dlj1.ec.db.types.QueryType;
 import cn.dlj1.ec.enums.WidgetType;
 
 import java.lang.annotation.ElementType;

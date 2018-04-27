@@ -1,5 +1,9 @@
 /**
  * 条件接口
+ *  普通查询条件 eq gt get like in ...
+ *  排序 order
+ *  分页 limit
+ *  分组 group
  *
  *
  * @author: fivewords(443672581 @ qq.com)

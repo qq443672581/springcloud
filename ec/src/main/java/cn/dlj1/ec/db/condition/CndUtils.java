@@ -1,6 +1,6 @@
 package cn.dlj1.ec.db.condition;
 
-import cn.dlj1.ec.enums.QueryType;
+import cn.dlj1.ec.db.types.QueryType;
 import cn.dlj1.ec.db.condition.query.Between;
 import cn.dlj1.ec.db.condition.query.Composite;
 import cn.dlj1.ec.db.condition.query.Simple;

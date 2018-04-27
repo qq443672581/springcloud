@@ -1,7 +1,7 @@
-package cn.dlj1.ec.enums;
+package cn.dlj1.ec.db.types;
 
 /**
- * 条件类型
+ * 条件查询类型
  *
  * @author: fivewords(443672581 @ qq.com)
  * @dateTime: 2018/4/19 21:41
@@ -9,8 +9,11 @@ package cn.dlj1.ec.enums;
 public enum CndType {
 
     query,
-    order,
-    limit
 
+    order,
+
+    limit,
+
+    group
 
 }

@@ -1,7 +1,7 @@
 package cn.dlj1.ec.db.condition;
 
-import cn.dlj1.ec.enums.CndType;
-import cn.dlj1.ec.enums.QueryType;
+import cn.dlj1.ec.db.types.CndType;
+import cn.dlj1.ec.db.types.QueryType;
 
 /**
  * 条件查询子类

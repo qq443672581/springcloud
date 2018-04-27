@@ -1,4 +1,4 @@
-package cn.dlj1.ec.enums;
+package cn.dlj1.ec.db.types;
 
 /**
  * 排序类型
@@ -9,6 +9,7 @@ package cn.dlj1.ec.enums;
 public enum OrderType {
 
     asc,
+
     desc
 
 }

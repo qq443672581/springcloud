@@ -1,6 +1,6 @@
 package cn.dlj1.ec.db.condition.common;
 
-import cn.dlj1.ec.enums.CndType;
+import cn.dlj1.ec.db.types.CndType;
 import cn.dlj1.ec.db.condition.Cnd;
 
 /**
