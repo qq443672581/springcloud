@@ -1,4 +1,4 @@
-package cn.dlj1.ec.db.eql;
+package cn.dlj1.ec.db;
 
 import cn.dlj1.ec.db.condition.Cnd;
 import cn.dlj1.ec.db.returns.Return;
