@@ -1,6 +1,6 @@
 package cn.dlj1.ec.config;
 
-import cn.dlj1.ec.db.Jdbc;
+import cn.dlj1.ec.dao.Jdbc;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

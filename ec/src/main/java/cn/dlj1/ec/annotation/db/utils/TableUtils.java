@@ -12,6 +12,9 @@ import cn.dlj1.ec.pojo.entity.Entity;
 public class TableUtils {
 
     public static Table get(Class<? extends Entity> type) {
+        if(null == type){
+            throw new NullPointerException();
+        }
         return type.getAnnotation(Table.class);
     }
 
@@ -37,6 +40,17 @@ public class TableUtils {
             throw new NullPointerException("@Table 不存在!");
         }
         return table;
+    }
+
+    public static boolean has(Class<? extends Entity> type){
+        return null != get(type);
+    }
+
+    public static boolean has(Entity entity){
+        if(null == entity){
+            throw new NullPointerException();
+        }
+        return has(entity.getClass());
     }
 
 }

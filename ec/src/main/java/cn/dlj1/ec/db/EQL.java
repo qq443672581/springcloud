@@ -19,7 +19,7 @@ public class EQL {
     public static final int EVERY_PAGE_SIZE = 20;
 
     public static EqlResult insert(Entity entity) {
-        return null;
+        return impl.insert(entity);
     }
 
     public static EqlResult delete(Class<Entity> clazz, Object ids) {
@@ -38,5 +38,9 @@ public class EQL {
 }
 
 class Impl {
+
+    public EqlResult insert(Entity entity) {
+        return null;
+    }
 
 }

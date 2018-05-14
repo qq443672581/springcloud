@@ -1,4 +1,4 @@
-package cn.dlj1.ec.db;
+package cn.dlj1.ec.dao;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
