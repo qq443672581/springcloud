@@ -1,4 +1,4 @@
-package cn.dlj1.ec.db.condition;
+package cn.dlj1.ec.db.component;
 
 import cn.dlj1.ec.db.types.CndType;
 import cn.dlj1.ec.db.types.QueryType;
@@ -15,10 +15,6 @@ public class Query implements Cnd {
     private QueryType queryType;
 
     @Override
-    public CndType getCndType() {
-        return CndType.query;
-    }
-
     public QueryType getQueryType() {
         return queryType;
     }
@@ -30,4 +26,5 @@ public class Query implements Cnd {
     public Query(QueryType queryType) {
         this.queryType = queryType;
     }
+
 }

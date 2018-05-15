@@ -1,8 +1,8 @@
-package cn.dlj1.ec.db.condition.common;
+package cn.dlj1.ec.db.component;
 
 import cn.dlj1.ec.db.types.CndType;
 import cn.dlj1.ec.db.types.OrderType;
-import cn.dlj1.ec.db.condition.Cnd;
+import cn.dlj1.ec.pojo.entity.Entity;
 
 /**
  * 条件 排序
@@ -10,7 +10,7 @@ import cn.dlj1.ec.db.condition.Cnd;
  * @author: fivewords(443672581 @ qq.com)
  * @dateTime: 2018/4/19 22:26
  */
-public class Order implements Cnd {
+public class Order {
 
     private String field;
 
@@ -37,14 +37,12 @@ public class Order implements Cnd {
         this.orderType = orderType;
     }
 
+    public Order(Class<? extends Entity> clazz, String field, OrderType orderType) {
+        this(field, orderType);
+    }
+
     public Order(String field) {
         this(field, OrderType.desc);
     }
-
-    @Override
-    public CndType getCndType() {
-        return CndType.order;
-    }
-
 
 }

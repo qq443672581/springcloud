@@ -1,7 +1,6 @@
-package cn.dlj1.ec.db.condition.common;
+package cn.dlj1.ec.db.component;
 
 import cn.dlj1.ec.db.types.CndType;
-import cn.dlj1.ec.db.condition.Cnd;
 
 /**
  * 分页
@@ -9,7 +8,7 @@ import cn.dlj1.ec.db.condition.Cnd;
  * @author: fivewords(443672581 @ qq.com)
  * @dateTime: 2018/4/19 22:26
  */
-public class Limit implements Cnd {
+public class Limit {
 
     private int start;
 
@@ -29,11 +28,6 @@ public class Limit implements Cnd {
 
     public void setSize(int size) {
         this.size = size;
-    }
-
-    @Override
-    public CndType getCndType() {
-        return CndType.limit;
     }
 
     public Limit(int start, int size) {

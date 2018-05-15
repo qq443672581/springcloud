@@ -1,6 +1,6 @@
 package cn.dlj1.ec.db.sql;
 
-import cn.dlj1.ec.db.condition.Cnd;
+import cn.dlj1.ec.db.component.Cnd;
 import cn.dlj1.ec.pojo.entity.Entity;
 
 /**
@@ -11,12 +11,7 @@ import cn.dlj1.ec.pojo.entity.Entity;
 public class Insert<T extends Entity> extends Sql<T>{
 
     @Override
-    public Sql addEntity(T entity) {
-        return super.addEntity(entity);
-    }
+    public void create() {
 
-    @Override
-    public Sql addCnds(Cnd cnd) {
-        return super.addCnds(cnd);
     }
 }

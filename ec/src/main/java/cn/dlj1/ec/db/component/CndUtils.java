@@ -1,9 +1,9 @@
-package cn.dlj1.ec.db.condition;
+package cn.dlj1.ec.db.component;
 
 import cn.dlj1.ec.db.types.QueryType;
-import cn.dlj1.ec.db.condition.query.Between;
-import cn.dlj1.ec.db.condition.query.Composite;
-import cn.dlj1.ec.db.condition.query.Simple;
+import cn.dlj1.ec.db.component.query.Between;
+import cn.dlj1.ec.db.component.query.Composite;
+import cn.dlj1.ec.db.component.query.Simple;
 
 import java.util.Arrays;
 
@@ -34,15 +34,26 @@ public class CndUtils {
         return create(0);
     }
 
-    public static Cnd[] add(Cnd[] cnds, Cnd cnd) {
-        if (null == cnds) {
-            cnds = new Cnd[0];
+    public static Cnd[] add(Cnd[] srcs, Cnd... cnds) {
+        if (null == srcs) {
+            srcs = new Cnd[0];
         }
-        if (null != cnd) {
-            cnds = Arrays.copyOf(cnds, cnds.length + 1);
-            cnds[cnds.length - 1] = cnd;
+        if(null == cnds || cnds.length == 0){
+            return srcs;
         }
-        return cnds;
+        int nullSize = 0;
+        for (int i = 0; i < cnds.length; i++) {
+            if(null == cnds[i]) nullSize++;
+        }
+        if(nullSize == cnds.length){
+            return srcs;
+        }
+        srcs = Arrays.copyOf(srcs, srcs.length + cnds.length - nullSize);
+        int index = srcs.length;
+        for (int i = 0; i < cnds.length; i++) {
+            srcs[index++] = cnds[i];
+        }
+        return srcs;
     }
 
     /**

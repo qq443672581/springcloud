@@ -1,6 +1,6 @@
 package cn.dlj1.ec.dao;
 
-import cn.dlj1.ec.db.condition.Cnd;
+import cn.dlj1.ec.db.component.Cnd;
 import cn.dlj1.ec.pojo.entity.Entity;
 
 import java.util.List;

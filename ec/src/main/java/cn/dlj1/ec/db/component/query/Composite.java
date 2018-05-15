@@ -1,7 +1,7 @@
-package cn.dlj1.ec.db.condition.query;
+package cn.dlj1.ec.db.component.query;
 
 import cn.dlj1.ec.db.types.QueryType;
-import cn.dlj1.ec.db.condition.Query;
+import cn.dlj1.ec.db.component.Query;
 
 /**
  * 复合多条件

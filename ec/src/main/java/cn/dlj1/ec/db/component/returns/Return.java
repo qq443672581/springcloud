@@ -1,4 +1,4 @@
-package cn.dlj1.ec.db.returns;
+package cn.dlj1.ec.db.component.returns;
 
 /**
  * 字段
