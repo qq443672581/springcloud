@@ -37,7 +37,15 @@ public class Order {
         this.orderType = orderType;
     }
 
+    public Order(String field, String orderType) {
+        this(field, "desc".equals(orderType) ? OrderType.desc : OrderType.asc);
+    }
+
     public Order(Class<? extends Entity> clazz, String field, OrderType orderType) {
+        this(field, orderType);
+    }
+
+    public Order(Class<? extends Entity> clazz, String field, String orderType) {
         this(field, orderType);
     }
 

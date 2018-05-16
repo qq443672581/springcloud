@@ -4,46 +4,30 @@ import cn.dlj1.ec.db.component.Cnd;
 import cn.dlj1.ec.pojo.entity.Entity;
 
 /**
+
  select u.id id,u.name name from user u left join user_extend ue on u.id = ue.userId
  where @(where u.id id) and @(where u.name name)
+ group by @(group u.id id) order by @(order u.id id) @(limit)
+
  */
 
 /**
  * 用于VO类型的sql模板
+ * 主要通过关键词替换来实现
+ * 关键词:
+ *  简单：
+ *  @(return sqlField searchField)
+ *  @(where sqlField searchField)
+ *  @(group sqlField searchField)
+ *  @(order sqlField searchField)
+ *  @(limit)
+ *  复合：
+ *  @(returns)
+ *  @(wheres)
  *
  *
  * @param <T>
  */
-public class VoSql<T extends Entity> implements SqlSuper<T> {
+public interface VoSql<T extends Entity>{
 
-    // 类型
-    private Class<T> clazz;
-    private String sql;
-    private Object[] params;
-
-    private Cnd[] cnds;
-
-    public VoSql(String sql){
-        this.sql = sql;
-    }
-
-    @Override
-    public Class<T> getClazz() {
-        return clazz;
-    }
-
-    @Override
-    public void create() {
-
-    }
-
-    @Override
-    public String getSql() {
-        return this.sql;
-    }
-
-    @Override
-    public Object[] getParams() {
-        return this.params;
-    }
 }

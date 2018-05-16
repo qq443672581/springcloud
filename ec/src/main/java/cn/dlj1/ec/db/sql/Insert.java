@@ -2,6 +2,7 @@ package cn.dlj1.ec.db.sql;
 
 import cn.dlj1.ec.db.component.Cnd;
 import cn.dlj1.ec.pojo.entity.Entity;
+import cn.dlj1.ec.pojo.entity.IdEntity;
 
 /**
  * 插入
@@ -11,7 +12,7 @@ import cn.dlj1.ec.pojo.entity.Entity;
 public class Insert<T extends Entity> extends Sql<T>{
 
     @Override
-    public void create() {
-
+    public boolean build() {
+        return true;
     }
 }

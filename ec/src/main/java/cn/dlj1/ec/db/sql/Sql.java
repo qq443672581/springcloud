@@ -1,21 +1,26 @@
 package cn.dlj1.ec.db.sql;
 
 import cn.dlj1.ec.annotation.db.utils.TableUtils;
-import cn.dlj1.ec.db.component.Cnd;
-import cn.dlj1.ec.db.component.CndUtils;
-import cn.dlj1.ec.db.component.Limit;
-import cn.dlj1.ec.db.component.Order;
+import cn.dlj1.ec.db.component.*;
 import cn.dlj1.ec.db.component.returns.Return;
 import cn.dlj1.ec.pojo.entity.Entity;
 
 /**
  * 创建一个Sql
+ * 仅仅用于单表查询
+ *
+ * insert into table(a,b,c) value(?,?,?)    ： 实体
+ * delete from table where id = ?           ： 类型、条件
+ * update table set a = ? where id = ?      ： 类型、
+ * select id,a,b,c from table where id = ?
+ *
  *
  * @param <T>
  */
-public abstract class Sql<T extends Entity> implements SqlSuper<T>{
+public abstract class Sql<T extends Entity> implements SqlSuper<T>,VoSql<T>{
 
     private String sql;
+
     private Object[] params;
 
     // 创建sql对应的实体类型
@@ -32,6 +37,11 @@ public abstract class Sql<T extends Entity> implements SqlSuper<T>{
     private Order order;
     // 分页
     private Limit limit;
+    // 分组
+    private Group[] groups;
+
+    @Override
+    public abstract boolean build();
 
     public Sql<T> addEntity(T entity){
         if(!TableUtils.has(entity.getClass())){
@@ -41,26 +51,40 @@ public abstract class Sql<T extends Entity> implements SqlSuper<T>{
         return this;
     }
 
-    public Sql<T> addReturns(Return... returns){
-        return this;
+    @Override
+    public Sql<T> addReturns(Return... returns) {
+        return null;
     }
 
-    public Sql<T> addCnds(Cnd... cnds){
-        this.cnds = CndUtils.add(this.cnds,cnds);
+    @Override
+    public Sql<T> addCnds(Cnd... cnds) {
+        return null;
+    }
+
+    @Override
+    public Sql<T> addGroups(Group... groups) {
+        return null;
+    }
+
+    @Override
+    public Sql<T> setLimit(Limit limit) {
+        this.limit = limit;
         return this;
     }
 
     @Override
-    public Class<T> getClazz() {
-        return clazz;
+    public Sql<T> setOrder(Order order) {
+        this.order = order;
+        return this;
     }
-
-    @Override
-    public abstract void create();
 
     @Override
     public String getSql() {
         return sql;
+    }
+
+    public void setSql(String sql) {
+        this.sql = sql;
     }
 
     @Override
@@ -70,6 +94,11 @@ public abstract class Sql<T extends Entity> implements SqlSuper<T>{
 
     public void setParams(Object[] params) {
         this.params = params;
+    }
+
+    @Override
+    public Class<T> getClazz() {
+        return clazz;
     }
 
     public void setClazz(Class<T> clazz) {
@@ -104,17 +133,15 @@ public abstract class Sql<T extends Entity> implements SqlSuper<T>{
         return order;
     }
 
-    public Sql<T> setOrder(Order order) {
-        this.order = order;
-        return this;
-    }
-
     public Limit getLimit() {
         return limit;
     }
 
-    public Sql<T> setLimit(Limit limit) {
-        this.limit = limit;
-        return this;
+    public Group[] getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Group[] groups) {
+        this.groups = groups;
     }
 }
