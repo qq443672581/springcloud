@@ -2,10 +2,13 @@ package cn.dlj1.ec.db.sql;
 
 import cn.dlj1.ec.db.component.*;
 import cn.dlj1.ec.db.component.returns.Return;
-import cn.dlj1.ec.pojo.entity.Entity;
+import cn.dlj1.ec.db.exception.SqlBuildException;
+import cn.dlj1.ec.db.entity.Entity;
 
 /**
  * sql查询接口
+ *
+ * 一切操作都应该依托实体来进行
  *
  * @param <T>
  */
@@ -19,14 +22,24 @@ public interface SqlSuper<T extends Entity> {
     Class<T> getClazz();
 
     /**
-     * 根据本类已有属性,实现sql
+     * sql替换
+     *
+     * @param oldChar
+     * @param newChar
+     */
+    void replaceSql(String oldChar, String newChar);
+
+    /**
+     * 根据本类已有属性,实现组装sql
+     * 如果在build的时候出错，那么要抛出异常
      *
      * @return
      */
-    boolean build();
+    Sql<T> build() throws SqlBuildException;
 
     /**
      * 返回sql
+     * build前为空
      *
      * @return
      */
@@ -34,13 +47,14 @@ public interface SqlSuper<T extends Entity> {
 
     /**
      * 如果有参数 返回参数
+     * build之前返回空
      *
      * @return
      */
     Object[] getParams();
 
     /**
-     * 添加需要转化的实体类
+     * insert、update 操作时，添加需要转化的实体
      *
      * @param entity
      * @return

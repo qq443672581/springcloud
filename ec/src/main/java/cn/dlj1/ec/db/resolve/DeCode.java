@@ -2,7 +2,7 @@ package cn.dlj1.ec.db.resolve;
 
 import cn.dlj1.ec.db.component.Cnd;
 import cn.dlj1.ec.db.component.returns.Return;
-import cn.dlj1.ec.pojo.entity.Entity;
+import cn.dlj1.ec.db.entity.Entity;
 
 /**
  * sql拼接 解析器

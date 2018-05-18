@@ -1,6 +1,6 @@
 package cn.dlj1.ec.db.component.query;
 
-import cn.dlj1.ec.db.types.QueryType;
+import cn.dlj1.ec.db.annotations.Form;
 import cn.dlj1.ec.db.component.Query;
 
 /**
@@ -22,7 +22,7 @@ public class Composite extends Query {
     }
 
     public Composite(Query[] querys) {
-        super(QueryType.AND);
+        super(Form.Query.AND);
         this.querys = querys;
     }
 }

@@ -1,8 +1,7 @@
 package cn.dlj1.ec.db.component;
 
-import cn.dlj1.ec.db.types.CndType;
 import cn.dlj1.ec.db.types.OrderType;
-import cn.dlj1.ec.pojo.entity.Entity;
+import cn.dlj1.ec.db.entity.Entity;
 
 /**
  * 条件 排序

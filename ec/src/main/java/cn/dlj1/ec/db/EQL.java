@@ -2,7 +2,9 @@ package cn.dlj1.ec.db;
 
 import cn.dlj1.ec.db.component.Cnd;
 import cn.dlj1.ec.db.component.returns.Return;
-import cn.dlj1.ec.pojo.entity.Entity;
+import cn.dlj1.ec.db.entity.Entity;
+import cn.dlj1.ec.db.sql.Insert;
+import cn.dlj1.ec.db.sql.SqlSuper;
 
 /**
  * EQL 对象级 sql生成工具类
@@ -18,19 +20,19 @@ public class EQL {
     //分页默认每页数量
     public static final int EVERY_PAGE_SIZE = 20;
 
-    public static EqlResult insert(Entity entity) {
+    public static SqlSuper<Entity> insert(Entity entity) {
         return impl.insert(entity);
     }
 
-    public static EqlResult delete(Class<Entity> clazz, Object ids) {
+    public static SqlSuper<Entity> delete(Class<Entity> clazz, Object ids) {
         return null;
     }
 
-    public static EqlResult update(Entity entity, Object id) {
+    public static SqlSuper<Entity> update(Entity entity, Object id) {
         return null;
     }
 
-    public static EqlResult query(Class<Entity> clazz, Return ret, Cnd cnd) {
+    public static SqlSuper<Entity> query(Class<Entity> clazz, Return ret, Cnd cnd) {
         return null;
     }
 
@@ -39,8 +41,10 @@ public class EQL {
 
 class Impl {
 
-    public EqlResult insert(Entity entity) {
-        return null;
+    public SqlSuper<Entity> insert(Entity entity) {
+        return new Insert<Entity>()
+                .addEntity(entity)
+                .build();
     }
 
 }

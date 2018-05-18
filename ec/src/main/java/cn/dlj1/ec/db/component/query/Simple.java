@@ -1,6 +1,6 @@
 package cn.dlj1.ec.db.component.query;
 
-import cn.dlj1.ec.db.types.QueryType;
+import cn.dlj1.ec.db.annotations.Form;
 import cn.dlj1.ec.db.component.Query;
 
 /**
@@ -31,8 +31,8 @@ public class Simple extends Query {
         this.value = value;
     }
 
-    public Simple(QueryType queryType, String field, Object value) {
-        super(queryType);
+    public Simple(Form.Query query, String field, Object value) {
+        super(query);
         this.field = field;
         this.value = value;
     }

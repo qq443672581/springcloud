@@ -1,6 +1,6 @@
 package cn.dlj1.ec.db.component;
 
-import cn.dlj1.ec.db.types.QueryType;
+import cn.dlj1.ec.db.annotations.Form;
 
 /**
  * 条件接口
@@ -10,6 +10,6 @@ import cn.dlj1.ec.db.types.QueryType;
  */
 public interface Cnd {
 
-    public QueryType getQueryType();
+    Form.Query getQuery();
 
 }

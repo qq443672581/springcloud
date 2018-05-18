@@ -1,6 +1,8 @@
 package cn.dlj1.ec.utils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,14 +37,25 @@ public class ClassUtils {
         return impl.getFieldsString(clazz);
     }
 
+    public static Method getMethod(Class<?> clazz, Field field) {
+        return impl.getMethod(clazz, field);
+    }
+
+    public static Object getValue(Object object, Field field) {
+        return impl.getValue(object, field);
+    }
 
 }
 
 class Impl {
 
     private static final Object lock = new Object();
+    // 类字段缓存
     private static final Map<Class<?>, Field[]> classFields = new HashMap<Class<?>, Field[]>();
+    // 类字段字符串缓存
     private static final Map<Class<?>, String[]> classFieldsString = new HashMap<Class<?>, String[]>();
+    // 字段get方法缓存
+    private static final Map<Field, Method> fieldsGetMethod = new HashMap<Field, Method>();
 
     /**
      * 获取一个类的全部字段
@@ -102,6 +115,47 @@ class Impl {
         classFieldsString.put(clazz, fields);
 
         return fields;
+    }
+
+    public Method getMethod(Class<?> clazz, Field field) {
+        Method method = fieldsGetMethod.get(field);
+        if (null != method) {
+            return method;
+        }
+
+        synchronized (lock){
+            method = fieldsGetMethod.get(method);
+            if (null != method) {
+                return method;
+            }
+            String name = "get";
+            if(field.getType() == boolean.class || field.getType() == Boolean.class){
+                name = "is";
+            }
+            name = name + field.getName().substring(0,1).toUpperCase() + field.getName().substring(1);
+            try {
+                method = clazz.getMethod(name);
+                fieldsGetMethod.put(field, method);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+                return null;
+            }
+
+        }
+
+        return method;
+    }
+
+    public Object getValue(Object object, Field field) {
+        Method method = getMethod(object.getClass(), field);
+        try {
+            return method.invoke(object);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

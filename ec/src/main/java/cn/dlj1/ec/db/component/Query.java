@@ -1,7 +1,6 @@
 package cn.dlj1.ec.db.component;
 
-import cn.dlj1.ec.db.types.CndType;
-import cn.dlj1.ec.db.types.QueryType;
+import cn.dlj1.ec.db.annotations.Form;
 
 /**
  * 条件查询子类
@@ -12,19 +11,19 @@ import cn.dlj1.ec.db.types.QueryType;
  */
 public class Query implements Cnd {
 
-    private QueryType queryType;
+    private Form.Query query;
 
     @Override
-    public QueryType getQueryType() {
-        return queryType;
+    public Form.Query getQuery() {
+        return query;
     }
 
-    public void setQueryType(QueryType queryType) {
-        this.queryType = queryType;
+    public void setQuery(Form.Query query) {
+        this.query = query;
     }
 
-    public Query(QueryType queryType) {
-        this.queryType = queryType;
+    public Query(Form.Query query) {
+        this.query = query;
     }
 
 }

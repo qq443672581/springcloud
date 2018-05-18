@@ -1,6 +1,6 @@
 package cn.dlj1.ec.service;
 
-import cn.dlj1.ec.pojo.entity.Entity;
+import cn.dlj1.ec.db.entity.Entity;
 
 /**
  * 服务接口

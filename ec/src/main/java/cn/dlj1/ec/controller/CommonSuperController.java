@@ -1,6 +1,6 @@
 package cn.dlj1.ec.controller;
 
-import cn.dlj1.ec.pojo.entity.Entity;
+import cn.dlj1.ec.db.entity.Entity;
 import cn.dlj1.ec.service.SuperService;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;

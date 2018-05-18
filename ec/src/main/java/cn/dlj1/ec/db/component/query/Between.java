@@ -1,6 +1,6 @@
 package cn.dlj1.ec.db.component.query;
 
-import cn.dlj1.ec.db.types.QueryType;
+import cn.dlj1.ec.db.annotations.Form;
 import cn.dlj1.ec.db.component.Query;
 
 /**
@@ -42,7 +42,7 @@ public class Between extends Query {
     }
 
     public Between(String field, Object left, Object right) {
-        super(QueryType.BETWEEN);
+        super(Form.Query.BETWEEN);
         this.field = field;
         this.left = left;
         this.right = right;

@@ -1,9 +1,16 @@
 package cn.dlj1.ec.db.sql;
 
-import cn.dlj1.ec.annotation.db.utils.TableUtils;
-import cn.dlj1.ec.db.component.*;
+import cn.dlj1.ec.db.component.Cnd;
+import cn.dlj1.ec.db.component.Group;
+import cn.dlj1.ec.db.component.Limit;
+import cn.dlj1.ec.db.component.Order;
 import cn.dlj1.ec.db.component.returns.Return;
-import cn.dlj1.ec.pojo.entity.Entity;
+import cn.dlj1.ec.db.exception.SqlBuildException;
+import cn.dlj1.ec.db.utils.CndUtils;
+import cn.dlj1.ec.db.utils.GroupUtils;
+import cn.dlj1.ec.db.utils.ReturnUtils;
+import cn.dlj1.ec.db.entity.Entity;
+import org.hibernate.validator.internal.util.privilegedactions.NewJaxbContext;
 
 /**
  * 创建一个Sql
@@ -17,7 +24,7 @@ import cn.dlj1.ec.pojo.entity.Entity;
  *
  * @param <T>
  */
-public abstract class Sql<T extends Entity> implements SqlSuper<T>,VoSql<T>{
+public abstract class Sql<T extends Entity> implements SqlSuper<T>{
 
     private String sql;
 
@@ -25,10 +32,8 @@ public abstract class Sql<T extends Entity> implements SqlSuper<T>,VoSql<T>{
 
     // 创建sql对应的实体类型
     private Class<T> clazz;
-
     // 如果是insert update 需要的实体对象
     private Entity entity;
-
     // 需要返回的字段
     private Return[] returns;
     // 条件
@@ -41,29 +46,34 @@ public abstract class Sql<T extends Entity> implements SqlSuper<T>,VoSql<T>{
     private Group[] groups;
 
     @Override
-    public abstract boolean build();
+    public void replaceSql(String oldChar, String newChar) {
+        this.sql = this.sql.replace(oldChar, newChar);
+    }
+
+    @Override
+    public abstract Sql<T> build() throws SqlBuildException;
 
     public Sql<T> addEntity(T entity){
-        if(!TableUtils.has(entity.getClass())){
-            throw new RuntimeException("类型不正确!");
-        }
         this.entity = entity;
         return this;
     }
 
     @Override
     public Sql<T> addReturns(Return... returns) {
-        return null;
+        this.returns = ReturnUtils.add(this.returns, returns);
+        return this;
     }
 
     @Override
     public Sql<T> addCnds(Cnd... cnds) {
-        return null;
+        this.cnds = CndUtils.add(this.cnds, cnds);
+        return this;
     }
 
     @Override
     public Sql<T> addGroups(Group... groups) {
-        return null;
+        this.groups = GroupUtils.add(this.groups, groups);
+        return this;
     }
 
     @Override
@@ -94,6 +104,10 @@ public abstract class Sql<T extends Entity> implements SqlSuper<T>,VoSql<T>{
 
     public void setParams(Object[] params) {
         this.params = params;
+    }
+
+    public void setParams(int index, Object param) {
+        this.params[index] = param;
     }
 
     @Override

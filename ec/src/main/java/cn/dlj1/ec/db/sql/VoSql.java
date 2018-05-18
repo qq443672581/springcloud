@@ -1,7 +1,6 @@
 package cn.dlj1.ec.db.sql;
 
-import cn.dlj1.ec.db.component.Cnd;
-import cn.dlj1.ec.pojo.entity.Entity;
+import cn.dlj1.ec.db.entity.Entity;
 
 /**
 
@@ -28,6 +27,6 @@ import cn.dlj1.ec.pojo.entity.Entity;
  *
  * @param <T>
  */
-public interface VoSql<T extends Entity>{
+public interface VoSql<T extends Entity> extends SqlSuper<T> {
 
 }
