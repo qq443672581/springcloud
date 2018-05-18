@@ -15,7 +15,7 @@ public class SqlUtils {
         StringBuffer sb = new StringBuffer(paramsSize * 2 - 1);
         for (int i = 0; i < paramsSize; i++) {
             sb.append("?");
-            if(i < paramsSize){
+            if(i < paramsSize - 1){
                 sb.append(",");
             }
         }

@@ -20,19 +20,19 @@ public class EQL {
     //分页默认每页数量
     public static final int EVERY_PAGE_SIZE = 20;
 
-    public static SqlSuper<Entity> insert(Entity entity) {
+    public static SqlSuper insert(Entity entity) {
         return impl.insert(entity);
     }
 
-    public static SqlSuper<Entity> delete(Class<Entity> clazz, Object ids) {
+    public static SqlSuper delete(Class clazz, Object ids) {
         return null;
     }
 
-    public static SqlSuper<Entity> update(Entity entity, Object id) {
+    public static SqlSuper update(Entity entity, Object id) {
         return null;
     }
 
-    public static SqlSuper<Entity> query(Class<Entity> clazz, Return ret, Cnd cnd) {
+    public static SqlSuper query(Class clazz, Return ret, Cnd cnd) {
         return null;
     }
 
@@ -41,8 +41,8 @@ public class EQL {
 
 class Impl {
 
-    public SqlSuper<Entity> insert(Entity entity) {
-        return new Insert<Entity>()
+    public SqlSuper insert(Entity entity) {
+        return new Insert(entity.getClass())
                 .addEntity(entity)
                 .build();
     }

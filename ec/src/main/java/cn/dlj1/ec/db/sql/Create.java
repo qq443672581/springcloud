@@ -6,13 +6,16 @@ import cn.dlj1.ec.db.exception.SqlBuildException;
 /**
  * 创建表
  *
- * @param <T>
  */
-public class Create<T extends Entity> extends Sql<T>{
+public class Create extends Sql{
 
     @Override
-    public Sql<T> build() throws SqlBuildException {
+    public Sql build() throws SqlBuildException {
 
         return null;
+    }
+
+    Create(Class<? extends Entity> clazz){
+        super(clazz);
     }
 }

@@ -25,8 +25,9 @@ import cn.dlj1.ec.db.entity.Entity;
  *  @(wheres)
  *
  *
- * @param <T>
  */
-public interface VoSql<T extends Entity> extends SqlSuper<T> {
+public interface VoSql extends SqlSuper {
+
+
 
 }

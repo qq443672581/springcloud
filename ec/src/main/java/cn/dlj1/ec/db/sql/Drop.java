@@ -6,14 +6,17 @@ import cn.dlj1.ec.db.exception.SqlBuildException;
 /**
  * 删除表
  *
- * @param <T>
  */
-public class Drop<T extends Entity> extends Sql<T>{
+public class Drop extends Sql{
 
     @Override
-    public Sql<T> build() throws SqlBuildException {
+    public Sql build() throws SqlBuildException {
 
         return null;
+    }
+
+    Drop(Class<? extends Entity> clazz){
+        super(clazz);
     }
 
 }

@@ -5,18 +5,24 @@ import cn.dlj1.ec.db.sql.Insert;
 import cn.dlj1.ec.db.sql.Sql;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 public class SpringbootApplicationTests {
 
     @Test
     public void test() {
         TestEntity test = new TestEntity();
         test.setName("ggg");
+        test.setId(66);
 
-        Sql insert = new Insert<TestEntity>()
+        long time = System.currentTimeMillis();
+        Sql insert = new Insert()
                 .addEntity(test)
                 .build();
+        System.out.println("time:" + (System.currentTimeMillis() - time));
 
-        insert.getSql();
+        System.out.println(insert.getSql());
+        System.out.println(Arrays.toString(insert.getParams()));
     }
 
 }

@@ -22,16 +22,15 @@ import org.hibernate.validator.internal.util.privilegedactions.NewJaxbContext;
  * select id,a,b,c from table where id = ?
  *
  *
- * @param <T>
  */
-public abstract class Sql<T extends Entity> implements SqlSuper<T>{
+public abstract class Sql implements SqlSuper{
 
     private String sql;
 
     private Object[] params;
 
     // 创建sql对应的实体类型
-    private Class<T> clazz;
+    private Class<? extends Entity> clazz;
     // 如果是insert update 需要的实体对象
     private Entity entity;
     // 需要返回的字段
@@ -45,45 +44,52 @@ public abstract class Sql<T extends Entity> implements SqlSuper<T>{
     // 分组
     private Group[] groups;
 
+    Sql(Class<? extends Entity> clazz){
+        this.clazz = clazz;
+    }
+
     @Override
     public void replaceSql(String oldChar, String newChar) {
         this.sql = this.sql.replace(oldChar, newChar);
     }
 
     @Override
-    public abstract Sql<T> build() throws SqlBuildException;
+    public abstract Sql build() throws SqlBuildException;
 
-    public Sql<T> addEntity(T entity){
+    public Sql addEntity(Entity entity){
         this.entity = entity;
+        if(null == this.clazz){
+            this.clazz = this.entity.getClass();
+        }
         return this;
     }
 
     @Override
-    public Sql<T> addReturns(Return... returns) {
+    public Sql addReturns(Return... returns) {
         this.returns = ReturnUtils.add(this.returns, returns);
         return this;
     }
 
     @Override
-    public Sql<T> addCnds(Cnd... cnds) {
+    public Sql addCnds(Cnd... cnds) {
         this.cnds = CndUtils.add(this.cnds, cnds);
         return this;
     }
 
     @Override
-    public Sql<T> addGroups(Group... groups) {
+    public Sql addGroups(Group... groups) {
         this.groups = GroupUtils.add(this.groups, groups);
         return this;
     }
 
     @Override
-    public Sql<T> setLimit(Limit limit) {
+    public Sql setLimit(Limit limit) {
         this.limit = limit;
         return this;
     }
 
     @Override
-    public Sql<T> setOrder(Order order) {
+    public Sql setOrder(Order order) {
         this.order = order;
         return this;
     }
@@ -111,11 +117,11 @@ public abstract class Sql<T extends Entity> implements SqlSuper<T>{
     }
 
     @Override
-    public Class<T> getClazz() {
+    public Class<? extends Entity> getClazz() {
         return clazz;
     }
 
-    public void setClazz(Class<T> clazz) {
+    public void setClazz(Class<? extends Entity> clazz) {
         this.clazz = clazz;
     }
 
